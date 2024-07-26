@@ -1,0 +1,26 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Initial state
+x0 = np.array([1, 1, 1])
+
+# Matrices A and B
+A = np.array([[1, 1, 0],
+              [0, 1, 1],
+              [0, 0, 1]])
+B = np.array([0, 0, 1])
+
+# Calculating x1
+u0_values = np.linspace(-10, 10, 400)
+x1_values = np.array([A @ x0 + B * u0 for u0 in u0_values])
+x_coords = x1_values[:, 0]
+y_coords = x1_values[:, 1]
+z_coords = x1_values[:, 2]
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x_coords, y_coords, z_coords, label='Reachable States')
+ax.scatter(2, 2, 1, color='red', label='Starting State')
+ax.set_xlabel('X axis')
+ax.set_ylabel('Y axis')
+ax.set_zlabel('Z axis')
+ax.legend()
